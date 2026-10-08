@@ -1,0 +1,41 @@
+Cloudflare Landing Zones - Accelerator
+Copyright 2026 Harry Shelton
+
+This product includes software developed as a Terraform template for deploying
+a Cloudflare baseline. It is derived from Cloudflare Landing Zones, by the same
+author: https://github.com/itsharryshelton/CloudflareLandingZone
+
+Licensed under the Apache License, Version 2.0. See the LICENSE file for the
+full terms.
+
+--------------------------------------------------------------------------------
+
+Third-party components
+
+This repository contains no vendored third-party source. It declares the
+following dependencies, which are obtained at run time and carry their own
+licences:
+
+  Terraform
+    Versions 1.6 and later are licensed under the Business Source License 1.1,
+    with IBM as licensor following its acquisition of HashiCorp. This is not an
+    OSI-approved open source licence. This repository does not distribute
+    Terraform; the operator installs an official release, and the layers
+    require version 1.12 or newer.
+    https://github.com/hashicorp/terraform/blob/main/LICENSE
+
+  terraform-provider-cloudflare (Cloudflare, Inc.)
+    Apache License 2.0. Downloaded from the Terraform Registry at init time and
+    not redistributed here.
+    https://github.com/cloudflare/terraform-provider-cloudflare/blob/main/LICENSE
+
+  TFLint (terraform-linters)
+    Mozilla Public License 2.0. An optional lint tool, and not part of anything
+    this repository deploys.
+    https://github.com/terraform-linters/tflint/blob/master/LICENSE
+
+  Wrangler (Cloudflare, Inc.)
+    MIT License or Apache License 2.0, at the user's option. Fetched with npx by
+    scripts/d1-migrations.sh and scripts/kv-bulk-load.sh when they are run, and
+    not redistributed here.
+    https://github.com/cloudflare/workers-sdk/blob/main/LICENSE-MIT

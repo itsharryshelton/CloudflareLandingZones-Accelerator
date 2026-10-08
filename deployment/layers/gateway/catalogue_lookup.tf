@@ -1,0 +1,29 @@
+# Cloudflare's own catalogues of content categories, security categories and
+# applications.
+#
+# Gateway expressions are written in numeric identifiers: `any(app.ids[*] in
+# {606})`, `any(dns.content_category[*] in {68 80})`. The numbers are stable, but
+# they are documented nowhere an operator would look, they change as Cloudflare
+# adds categories and applications, and a wrong one is a rule that silently
+# matches nothing rather than an error. So gateway.tfvars names things, and this
+# resolves the names.
+#
+# Where a scoped API token is used, both need Zero Trust:Read and nothing else.
+
+data "cloudflare_zero_trust_gateway_categories_list" "this" {
+  account_id = var.cloudflare_account_id
+}
+
+# The endpoint returns applications and the app types they belong to in one list.
+# `id` is what `app.ids` matches on, which is the field this layer uses:
+# selecting "Microsoft 365" covers every hostname Cloudflare knows the product
+# uses, which is the difference between one bypass rule and forty.
+#
+# max_items is set because the data source defaults it to 1000 and Cloudflare
+# publishes several thousand applications. The default silently truncates, and a
+# truncated catalogue does not look like a fault: the name resolves to nothing
+# and preflight reports it as a name Cloudflare does not know.
+data "cloudflare_zero_trust_gateway_app_types_list" "this" {
+  account_id = var.cloudflare_account_id
+  max_items  = 10000
+}

@@ -1,0 +1,5 @@
+# The scripts are run straight from a clone, on Windows as often as not. Git's
+# default there is to check text out with CRLF, and bash stops at the first
+# line of a script that has one ("$'\r': command not found"). Pin them to LF.
+* text=auto
+*.sh text eol=lf
